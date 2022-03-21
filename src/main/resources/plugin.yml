@@ -2,4 +2,4 @@ name: CommunityEvent
 main: fr.blueberry.studio.hermes.CommunityEvent
 version: 1.0-SNAPSHOT
 author: MelaineGerard
-description: Create a vote event and let the bot managing the event
+description: Create a community event and let the bot managing the event
