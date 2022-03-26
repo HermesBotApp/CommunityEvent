@@ -28,6 +28,8 @@ public class MessageReceivedListener extends ListenerAdapter {
 
         if (eventTextChannel != event.getTextChannel()) return;
         if (event.getAuthor().isBot()) return;
+        if (event.getMessage().getContentRaw().contains("http")) return;
+        if (event.getMessage().getAttachments().size() > 0) return;
 
         final MessageEmbed embed = MessageEmbedHelper.getBuilder()
             .setTitle("La blague de " + event.getMember().getUser().getName())
