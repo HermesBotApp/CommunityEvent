@@ -22,7 +22,7 @@ public class MessageReceivedListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        final Bot bot = this.botManager.pickRandomBot(true);
+        final Bot bot = this.botManager.getBot("Okami");
         final TextChannel eventTextChannel = event.getGuild().getTextChannelById(config.getLong("eventChannel"));
         final Color color = ColorHelper.toRGB(config.getString("color"));
 
@@ -32,7 +32,7 @@ public class MessageReceivedListener extends ListenerAdapter {
         if (event.getMessage().getAttachments().size() > 0) return;
 
         final MessageEmbed embed = MessageEmbedHelper.getBuilder()
-            .setTitle("La blague de " + event.getMember().getUser().getName())
+            .setTitle("La blague de " + event.getMember().getEffectiveName())
             .setDescription(event.getMessage().getContentRaw())
             .setColor(color)
             .setThumbnail(event.getMember().getUser().getAvatarUrl())
