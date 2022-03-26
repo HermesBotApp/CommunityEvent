@@ -23,6 +23,9 @@ public class MessageReceivedListener extends ListenerAdapter {
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         final Bot bot = this.botManager.getBot("Okami");
+
+        if (bot == null) return;
+
         final TextChannel eventTextChannel = event.getGuild().getTextChannelById(config.getLong("eventChannel"));
         final Color color = ColorHelper.toRGB(config.getString("color"));
 
