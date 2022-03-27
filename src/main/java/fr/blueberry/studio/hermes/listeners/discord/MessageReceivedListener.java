@@ -9,6 +9,7 @@ import fr.blueberry.studio.hermes.api.bots.Bot;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class MessageReceivedListener extends ListenerAdapter {
@@ -22,7 +23,7 @@ public class MessageReceivedListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        final Bot bot = this.botManager.getBot("Okami");
+        final Bot bot = this.botManager.getBot(config.getString("botName"));
 
         if (bot == null) return;
 
@@ -40,7 +41,8 @@ public class MessageReceivedListener extends ListenerAdapter {
             .setColor(color)
             .setThumbnail(event.getMember().getUser().getAvatarUrl())
             .build();
-            
+
+        event.getMessage().delete().queue();
         bot.sendMessageTo(eventTextChannel, embed);
     }
 }
