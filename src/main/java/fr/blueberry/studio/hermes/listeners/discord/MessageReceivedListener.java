@@ -9,7 +9,6 @@ import fr.blueberry.studio.hermes.api.bots.Bot;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class MessageReceivedListener extends ListenerAdapter {
@@ -42,7 +41,8 @@ public class MessageReceivedListener extends ListenerAdapter {
             .setThumbnail(event.getMember().getUser().getAvatarUrl())
             .build();
 
-        event.getMessage().delete().queue();
-        bot.sendMessageTo(eventTextChannel, embed);
+        event.getChannel().sendMessage(embed).queue(message -> {
+            event.getMessage().delete().queue();
+        });
     }
 }
