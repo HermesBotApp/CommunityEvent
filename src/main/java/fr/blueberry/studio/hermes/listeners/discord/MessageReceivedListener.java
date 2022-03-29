@@ -1,6 +1,9 @@
 package fr.blueberry.studio.hermes.listeners.discord;
 
 import org.simpleyaml.configuration.file.YamlFile;
+
+import emoji4j.EmojiUtils;
+
 import java.awt.Color;
 import fr.blueberry.studio.hermes.api.bots.BotManager;
 import fr.blueberry.studio.hermes.api.utils.ColorHelper;
@@ -40,8 +43,16 @@ public class MessageReceivedListener extends ListenerAdapter {
             .setColor(color)
             .setThumbnail(event.getMember().getUser().getAvatarUrl())
             .build();
+            
+        eventTextChannel.sendMessage(embed).queue(message -> {
+            final String emote = config.getString("emote");
 
-        event.getChannel().sendMessage(embed).queue(message -> {
+            if (EmojiUtils.isEmoji(emote)) {
+                message.addReaction(EmojiUtils.getEmoji(emote).getEmoji()).queue();
+            } else {
+                message.addReaction(emote).queue();
+            }
+            
             event.getMessage().delete().queue();
         });
     }
