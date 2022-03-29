@@ -1,5 +1,12 @@
 eventChannel: 
 botName: 
 color: 
-victoryColor: 
-iconUrl:
+prize: 
+victoryMessage: 
+  title: 
+  description: 
+  thumbnail: 
+  color: 
+    r: 
+    g: 
+    b: 
