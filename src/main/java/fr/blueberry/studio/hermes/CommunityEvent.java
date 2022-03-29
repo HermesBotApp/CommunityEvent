@@ -30,7 +30,7 @@ public class CommunityEvent extends Plugin {
         final Map<String, String> replacements =  new HashMap<String, String>();
 
         replacements.put("%user%", winner.getAsMention());
-        replacements.put("%reward%", INSTANCE.getConfiguration().getString("prize"));
+        replacements.put("%reward%", INSTANCE.getConfiguration().getString("reward"));
 
         MessageEmbed victoryMessageEmbed = MessageEmbedHelper.craftEmbedFromConfig("victoryMessage", INSTANCE.getConfiguration(), replacements);
         return victoryMessageEmbed;
