@@ -29,8 +29,8 @@ public class CommunityEvent extends Plugin {
     public static MessageEmbed getVictoryMessage (Member winner) {
         final Map<String, String> replacements =  new HashMap<String, String>();
 
-        replacements.put("%player%", winner.getAsMention());
-        replacements.put("%prize%", INSTANCE.getConfiguration().getString("prize"));
+        replacements.put("%user%", winner.getAsMention());
+        replacements.put("%reward%", INSTANCE.getConfiguration().getString("prize"));
 
         MessageEmbed victoryMessageEmbed = MessageEmbedHelper.craftEmbedFromConfig("victoryMessage", INSTANCE.getConfiguration(), replacements);
         return victoryMessageEmbed;
