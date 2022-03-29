@@ -25,7 +25,7 @@ public class MessageReceivedListener extends ListenerAdapter {
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
-        final Bot bot = this.botManager.getBot("Okami");
+        final Bot bot = this.botManager.getBot(config.getString("botName"));
 
         if (bot == null) return;
 
@@ -44,7 +44,6 @@ public class MessageReceivedListener extends ListenerAdapter {
             .setThumbnail(event.getMember().getUser().getAvatarUrl())
             .build();
             
-        event.getMessage().delete().queue();
         eventTextChannel.sendMessage(embed).queue(message -> {
             final String emote = config.getString("emote");
 
@@ -53,6 +52,8 @@ public class MessageReceivedListener extends ListenerAdapter {
             } else {
                 message.addReaction(emote).queue();
             }
+            
+            event.getMessage().delete().queue();
         });
     }
 }
